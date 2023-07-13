@@ -9,3 +9,10 @@ Frontend
 
 - rm -rf .git
 - npm install react-bootstrap bootstrap
+
+2. Connect Db
+3. Create ADD, GET, DELETE income
+
+- create IncomeModel
+- create transaction
+- create income controllers
