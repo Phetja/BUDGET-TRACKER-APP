@@ -16,3 +16,8 @@ Frontend
 - create IncomeModel
 - create transaction
 - create income controllers
+
+4. Create ADD, GET, DELETE expense
+
+- create ExpenseModel
+- create expense controllers
