@@ -1,18 +1,18 @@
 import React from 'react';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
+import { styled } from 'styled-components';
+import { InnerLayout } from '../../styles/Layouts';
 
 function Dashboard() {
   return (
-    <div>
-      <h1>
-        Example heading
-        <Badge bg="secondary" as={Button}>
-          New
-        </Badge>
-      </h1>
-    </div>
+    <DashboardStyled>
+      <InnerLayout>
+        {' '}
+        <h1>Dashboard</h1>
+      </InnerLayout>
+    </DashboardStyled>
   );
 }
-
+const DashboardStyled = styled.div``;
 export default Dashboard;

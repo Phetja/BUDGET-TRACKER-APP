@@ -6,8 +6,12 @@ import { useState } from 'react';
 import Dashboard from './components/Dashboard/Dashboard';
 import Expenses from './components/Expense/Expense';
 import Income from './components/Income/Income';
+import { useGlobalContext } from './context/GlobalContext';
 function App() {
   const [active, setActive] = useState(1);
+
+  const global = useGlobalContext();
+  console.log(global);
 
   const displayData = () => {
     switch (active) {
@@ -35,7 +39,7 @@ function App() {
 const AppStyled = styled.div`
   height: 100vh;
   background-image: url(${(props) => props.bg});
-  position: relative;
+  position: flex;
   main {
     flex: 1;
     background: rgba(252, 246, 249, 0.78);
