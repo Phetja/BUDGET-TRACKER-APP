@@ -1,32 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import avatar from '../../img/avatar.png';
 import { menuItems } from '../../utils/menuItems';
 
 function Navigation({ active, setActive }) {
+  const [Toggle, showMenu] = useState(false);
   return (
     <NavStyled>
-      <div className="user-con">
-        <img src={avatar} alt="" />
-        <div className="text">
-          <h2>Phetmaja</h2>
-          <p>Your Money</p>
+      <div className="nav">
+        <div className="user-con">
+          <img src={avatar} alt="" />
+          <div className="text">
+            <h2>Phetmaja</h2>
+            <p>Your Money</p>
+          </div>
+        </div>
+        <div className="nav__menu">
+          <ul className="menu-items">
+            {menuItems.map((item) => {
+              return (
+                <li
+                  key={item.id}
+                  onClick={() => setActive(item.id)}
+                  className={active === item.id ? 'active' : ''}
+                >
+                  {item.icon}
+                  <span>{item.title}</span>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </div>
-      <ul className="menu-items">
-        {menuItems.map((item) => {
-          return (
-            <li
-              key={item.id}
-              onClick={() => setActive(item.id)}
-              className={active === item.id ? 'active' : ''}
-            >
-              {item.icon}
-              <span>{item.title}</span>
-            </li>
-          );
-        })}
-      </ul>
     </NavStyled>
   );
 }
@@ -103,8 +108,60 @@ const NavStyled = styled.nav`
       border-radius: 0 10px 10px 0;
     }
   }
-  @media screen and (max-width: 350px){
+
+  @media screen and (max-width: 750px) {
+    position: fixed;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    z-index: 1000;
+    padding: 0;
+    background: #ffffff;
+    border: none;
+    backdrop-filter: none;
+    border-radius: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .nav {
+      height: 100px;
+    }
+    .nav__menu {
+      height: 100px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      margin: 2px;
+      background-color: var(--body-color);
+      box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
+      border-radius: 1.5rem;
+      transition: 0.3s;
+      padding: 2rem 1.5rem 4rem;
+      text-align: center;
+    }
     .user-con {
+      display: none;
+    }
+    .menu-items {
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .active {
+      color: rgba(34, 34, 96, 1) !important;
+      i {
+        color: rgba(34, 34, 96, 1) !important;
+      }
+      &::before {
+        display: none;
+      }
+    }
+
+    ul li span {
+      display: none;
+    }
   }
 `;
 

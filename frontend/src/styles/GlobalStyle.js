@@ -50,4 +50,7 @@ export const GlobalStyle = createGlobalStyle`
             }
         }
     }
+    @media screen and (max-width: 750px) {
+        button: 0;
+      }
 `;

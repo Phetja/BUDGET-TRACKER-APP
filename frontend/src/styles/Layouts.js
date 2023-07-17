@@ -5,6 +5,9 @@ export const MainLayout = styled.div`
   height: 100%;
   display: flex;
   gap: 2rem;
+  @media screen and (max-width: 750px) {
+    padding: 0;
+  }
 `;
 
 export const InnerLayout = styled.div`
