@@ -51,5 +51,11 @@ const AppStyled = styled.div`
       width: 0;
     }
   }
+  @media screen and (max-width: 750px) {
+    main {
+      border: none;
+      border-radius: 0px;
+    }
+  }
 `;
 export default App;

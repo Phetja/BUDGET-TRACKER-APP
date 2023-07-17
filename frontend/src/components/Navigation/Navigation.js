@@ -4,7 +4,6 @@ import avatar from '../../img/avatar.png';
 import { menuItems } from '../../utils/menuItems';
 
 function Navigation({ active, setActive }) {
-  const [Toggle, showMenu] = useState(false);
   return (
     <NavStyled>
       <div className="nav">
@@ -112,28 +111,27 @@ const NavStyled = styled.nav`
   @media screen and (max-width: 750px) {
     position: fixed;
     bottom: 0;
-    height: 100px;
+    height: 80px;
     width: 100%;
     z-index: 1000;
     padding: 0;
     background: #ffffff;
     border: none;
-    backdrop-filter: none;
+
     border-radius: 0px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     .nav {
-      height: 100px;
+      height: 80px;
     }
     .nav__menu {
-      height: 100px;
+      height: 80px;
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      margin: 2px;
-      background-color: var(--body-color);
+      background: #ffffff;
       box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
       border-radius: 1.5rem;
       transition: 0.3s;

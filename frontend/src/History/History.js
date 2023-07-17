@@ -52,6 +52,9 @@ const HistoryStyled = styled.div`
     justify-content: space-between;
     align-items: center;
   }
+  @media screen and (max-width: 750px) {
+    padding-top: 1rem;
+  }
 `;
 
 export default History;
