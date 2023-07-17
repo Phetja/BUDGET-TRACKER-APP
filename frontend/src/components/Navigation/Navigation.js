@@ -103,6 +103,9 @@ const NavStyled = styled.nav`
       border-radius: 0 10px 10px 0;
     }
   }
+  @media screen and (max-width: 350px){
+    .user-con {
+  }
 `;
 
 export default Navigation;
