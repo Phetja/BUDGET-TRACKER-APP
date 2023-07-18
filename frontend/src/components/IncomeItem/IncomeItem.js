@@ -103,19 +103,19 @@ function IncomeItem({
               {description}
             </p>
           </div>
-          <div className="btn-con">
-            <Button
-              icon={trash}
-              bPad={'1rem'}
-              bRad={'50%'}
-              bg={'var(--primary-color'}
-              color={'#fff'}
-              iColor={'#fff'}
-              hColor={'var(--color-green)'}
-              onClick={() => deleteItem(id)}
-            />
-          </div>
         </div>
+      </div>
+      <div className="btn-con">
+        <Button
+          icon={trash}
+          bPad={'1rem'}
+          bRad={'50%'}
+          bg={'var(--primary-color'}
+          color={'#fff'}
+          iColor={'#fff'}
+          hColor={'var(--color-green)'}
+          onClick={() => deleteItem(id)}
+        />
       </div>
     </IncomeItemStyled>
   );
@@ -185,6 +185,29 @@ const IncomeItemStyled = styled.div`
           opacity: 0.8;
         }
       }
+    }
+  }
+  btn-con {
+    display: flex;
+    align-items: center;
+  }
+  @media screen and (max-width: 750px) {
+    .content {
+      ddisplay: flex;
+      align-items: center;
+    }
+    .text {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+    }
+    .text p {
+      margin-bottom: 0.5rem;
+    }
+    .content .inner-content .text {
+      display: flex;
+      align-items: center;
+      gap: 0rem;
     }
   }
 `;

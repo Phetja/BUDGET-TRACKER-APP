@@ -4,6 +4,9 @@ import { InnerLayout } from '../../styles/Layouts';
 import { useGlobalContext } from '../../context/GlobalContext';
 import Form from '../Form/Form';
 import IncomeItem from '../IncomeItem/IncomeItem';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function Income() {
   const { addIncome, incomes, getIncomes, deleteIncome, totalIncome } =
@@ -16,10 +19,49 @@ function Income() {
     <IncomeStyled>
       <InnerLayout>
         <h1>Incomes</h1>
-        <h2 className="total-income">
-          Total Income: <span>${totalIncome()}</span>
-        </h2>
-        <div className="income-content">
+        <Row>
+          <Col md={12}>
+            {' '}
+            <h2 className="total-income">
+              Total Income: <span>${totalIncome()}</span>
+            </h2>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} md={4}>
+            <Form />
+          </Col>
+          <Col xs={12} md={8}>
+            <div className="incomes">
+              {incomes.map((income) => {
+                const {
+                  _id,
+                  title,
+                  amount,
+                  date,
+                  category,
+                  description,
+                  type,
+                } = income;
+                return (
+                  <IncomeItem
+                    key={_id}
+                    id={_id}
+                    title={title}
+                    description={description}
+                    amount={amount}
+                    date={date}
+                    type={type}
+                    category={category}
+                    indicatorColor="var(--color-green)"
+                    deleteItem={deleteIncome}
+                  />
+                );
+              })}
+            </div>
+          </Col>
+        </Row>
+        {/* <div className="income-content">
           <div className="form-container">
             {' '}
             <Form />
@@ -44,13 +86,16 @@ function Income() {
               );
             })}
           </div>
-        </div>
+        </div> */}
       </InnerLayout>
     </IncomeStyled>
   );
 }
 
 const IncomeStyled = styled.div`
+  .incomes {
+    flex: 1;
+  }
   display: flex;
   overflow: auto;
   .total-income {
@@ -76,6 +121,15 @@ const IncomeStyled = styled.div`
     gap: 2rem;
     .incomes {
       flex: 1;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    .total-income {
+      span {
+        font-size: 1.5srem;
+        font-weight: 600;
+        color: var(--color-green);
+      }
     }
   }
 `;
