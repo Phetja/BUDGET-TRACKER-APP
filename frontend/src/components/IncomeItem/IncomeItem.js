@@ -2,20 +2,24 @@ import React from 'react';
 import styled from 'styled-components';
 import { dateFormat } from '../../utils/dateFormat';
 import {
+  baht,
   bitcoin,
   book,
   calender,
   card,
   circle,
   clothing,
+  coffee,
   comment,
   dollar,
   food,
   freelance,
   medical,
+  mobile,
   money,
   piggy,
   stocks,
+  store,
   takeaway,
   trash,
   tv,
@@ -62,6 +66,8 @@ function IncomeItem({
     switch (category) {
       case 'education':
         return book;
+      case 'coffee':
+        return coffee;
       case 'groceries':
         return food;
       case 'health':
@@ -74,6 +80,10 @@ function IncomeItem({
         return clothing;
       case 'travelling':
         return freelance;
+      case 'store':
+        return store;
+      case 'mobile':
+        return mobile;
       case 'other':
         return circle;
       default:
@@ -93,7 +103,7 @@ function IncomeItem({
         <div className="inner-content">
           <div className="text">
             <p>
-              {dollar} {amount}
+              {baht} {amount}
             </p>
             <p>
               {calender} {dateFormat(date)}

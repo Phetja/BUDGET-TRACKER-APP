@@ -23,12 +23,12 @@ function Expense() {
           <Col md={12}>
             {' '}
             <h2 className="total-income">
-              Total Expense: <span>${totalExpense()}</span>
+              Total Expense: <span>{totalExpense()}฿</span>
             </h2>
           </Col>
         </Row>
         <Row>
-          <Col md={12}>
+          <Col xs={12} md={4}>
             <ExpenseForm />{' '}
           </Col>
           <Col xs={12} md={8}>

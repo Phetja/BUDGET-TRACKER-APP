@@ -88,13 +88,13 @@ function ExpenseForm() {
               <option value="" disabled>
                 Select Option
               </option>
-              <option value="education">Education</option>
-              <option value="groceries">Groceries</option>
-              <option value="health">Health</option>
-              <option value="subscriptions">Subscriptions</option>
-              <option value="takeaways">Takeaways</option>
-              <option value="clothing">Clothing</option>
-              <option value="travelling">Travelling</option>
+              <option value="groceries">อาหาร</option>
+              <option value="coffee">กาแฟ</option>
+              <option value="travelling">ค่าเดินทาง</option>
+              <option value="clothing">เสื้อผ้า</option>
+              <option value="mobile">ค่ามือถือ</option>
+              <option value="store">7-11</option>
+              <option value="health">ค่ายา</option>
               <option value="other">Other</option>
             </select>
           </div>

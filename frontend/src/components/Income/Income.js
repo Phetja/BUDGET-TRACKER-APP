@@ -4,17 +4,15 @@ import { InnerLayout } from '../../styles/Layouts';
 import { useGlobalContext } from '../../context/GlobalContext';
 import Form from '../Form/Form';
 import IncomeItem from '../IncomeItem/IncomeItem';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function Income() {
-  const { addIncome, incomes, getIncomes, deleteIncome, totalIncome } =
-    useGlobalContext();
+  const { incomes, getIncomes, deleteIncome, totalIncome } = useGlobalContext();
 
   useEffect(() => {
     getIncomes();
-  }, []);
+  }, [getIncomes]);
   return (
     <IncomeStyled>
       <InnerLayout>
@@ -23,7 +21,7 @@ function Income() {
           <Col md={12}>
             {' '}
             <h2 className="total-income">
-              Total Income: <span>${totalIncome()}</span>
+              Total Income: <span>{totalIncome()}฿</span>
             </h2>
           </Col>
         </Row>
@@ -61,32 +59,6 @@ function Income() {
             </div>
           </Col>
         </Row>
-        {/* <div className="income-content">
-          <div className="form-container">
-            {' '}
-            <Form />
-          </div>
-          <div className="incomes">
-            {incomes.map((income) => {
-              const { _id, title, amount, date, category, description, type } =
-                income;
-              return (
-                <IncomeItem
-                  key={_id}
-                  id={_id}
-                  title={title}
-                  description={description}
-                  amount={amount}
-                  date={date}
-                  type={type}
-                  category={category}
-                  indicatorColor="var(--color-green)"
-                  deleteItem={deleteIncome}
-                />
-              );
-            })}
-          </div>
-        </div> */}
       </InnerLayout>
     </IncomeStyled>
   );

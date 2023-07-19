@@ -5,12 +5,11 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useGlobalContext } from '../../context/GlobalContext';
 import Button from '../Button/Button.js';
 import { plus } from '../../utils/icons.js';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function Form() {
-  const { addIncome, getIncomes, error, setError } = useGlobalContext();
+  const { addIncome, error } = useGlobalContext();
   const [inputState, setInputState] = useState({
     title: '',
     amount: '',

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import avatar from '../../img/avatar.png';
 import { menuItems } from '../../utils/menuItems';
@@ -135,17 +135,24 @@ const NavStyled = styled.nav`
       box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
       border-radius: 1.5rem;
       transition: 0.3s;
-      padding: 2rem 1.5rem 4rem;
       text-align: center;
+      padding-bottom: 1rem;
     }
     .user-con {
       display: none;
     }
     .menu-items {
-      padding: 0;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0;
+      padding: 1rem;
+    }
+
+    .menu-items i {
+      display: flex;
+      align-items: center;
     }
     .active {
       color: rgba(34, 34, 96, 1) !important;
