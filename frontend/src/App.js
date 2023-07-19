@@ -55,6 +55,7 @@ const AppStyled = styled.div`
     main {
       border: none;
       border-radius: 0px;
+      padding: 0;
     }
   }
 `;

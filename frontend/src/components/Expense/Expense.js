@@ -5,6 +5,8 @@ import { useGlobalContext } from '../../context/GlobalContext';
 import Form from '../Form/Form';
 import IncomeItem from '../IncomeItem/IncomeItem';
 import ExpenseForm from './ExpenseForm';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function Expense() {
   const { expenses, getExpense, deleteExpense, totalExpense } =
@@ -17,40 +19,57 @@ function Expense() {
     <ExpenseStyled>
       <InnerLayout>
         <h1>Expense</h1>
-        <h2 className="total-income">
-          Total Expense: <span>${totalExpense()}</span>
-        </h2>
-        <div className="income-content">
-          <div className="form-container">
+        <Row>
+          <Col md={12}>
+            {' '}
+            <h2 className="total-income">
+              Total Expense: <span>${totalExpense()}</span>
+            </h2>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={12}>
             <ExpenseForm />{' '}
-          </div>
-          <div className="incomes">
-            {expenses.map((income) => {
-              const { _id, title, amount, date, category, description, type } =
-                income;
-              return (
-                <IncomeItem
-                  key={_id}
-                  id={_id}
-                  title={title}
-                  description={description}
-                  amount={amount}
-                  date={date}
-                  type={type}
-                  category={category}
-                  indicatorColor="var(--color-green)"
-                  deleteItem={deleteExpense}
-                />
-              );
-            })}
-          </div>
-        </div>
+          </Col>
+          <Col xs={12} md={8}>
+            <div className="incomes">
+              {expenses.map((income) => {
+                const {
+                  _id,
+                  title,
+                  amount,
+                  date,
+                  category,
+                  description,
+                  type,
+                } = income;
+                return (
+                  <IncomeItem
+                    key={_id}
+                    id={_id}
+                    title={title}
+                    description={description}
+                    amount={amount}
+                    date={date}
+                    type={type}
+                    category={category}
+                    indicatorColor="var(--color-green)"
+                    deleteItem={deleteExpense}
+                  />
+                );
+              })}
+            </div>
+          </Col>
+        </Row>
       </InnerLayout>
     </ExpenseStyled>
   );
 }
 
 const ExpenseStyled = styled.div`
+  .incomes {
+    flex: 1;
+  }
   display: flex;
   overflow: auto;
   .total-income {
@@ -76,6 +95,15 @@ const ExpenseStyled = styled.div`
     gap: 2rem;
     .incomes {
       flex: 1;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    .total-income {
+      span {
+        font-size: 1.5srem;
+        font-weight: 600;
+        color: var(--color-green);
+      }
     }
   }
 `;

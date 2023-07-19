@@ -164,21 +164,43 @@ const DashboardStyle = styled.div`
     justify-content: space-between;
   }
 
-  @media screen and (max-width: 750px) {
+  @media screen and (max-width: 750px) and (min-width: 500px) {
     .chart-con {
       display: none;
     }
     .income,
     .expense,
     .balance {
-      margin: 0.75rem;
-      padding: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0.5rem;
+      padding: 1 rem;
+    }
+    h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0rem;
     }
     .income,
     .expense,
     .balance p {
       font-size: 2rem;
       font-weight: 700;
+    }
+  }
+  @media screen and (max-width: 490px) {
+    .chart-con {
+      display: none;
+    }
+    .income,
+    .expense,
+    .balance {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0.5rem;
+      padding: 0.5 rem;
     }
   }
 `;
