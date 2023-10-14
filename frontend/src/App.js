@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import bg from './img/bg.png';
 import { MainLayout } from './styles/Layouts';
 import Navigation from './components/Navigation/Navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Dashboard from './components/Dashboard/Dashboard';
 import Expenses from './components/Expense/Expense';
 import Income from './components/Income/Income';
@@ -14,7 +14,7 @@ import Analysis from './components/Analysis/Analysis';
 import Test from './components/Analysis/Test';
 function App() {
   const [active, setActive] = useState(1);
-
+  const [message, setMessage] = useState('');
   const global = useGlobalContext();
   console.log(global);
 
@@ -34,6 +34,11 @@ function App() {
         return <Home />;
     }
   };
+  useEffect(() => {
+    fetch('https://phemaja-expense.onrender.com')
+      .then((res) => res.json())
+      .then((data) => setMessage(data.message));
+  }, []);
   return (
     <AppStyled className="App">
       <MainLayout>
