@@ -4,14 +4,20 @@ import { InnerLayout } from '../../styles/Layouts';
 import { useGlobalContext } from '../../context/GlobalContext';
 import Form from '../Form/Form';
 import IncomeItem from '../IncomeItem/IncomeItem';
-import ExpenseForm from './ExpenseForm';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import ExpenseForm from '../Form/ExpenseForm';
+import { numFormat } from '../../utils/numFormat';
 
 function Expense() {
-  const { expenses, getExpense, deleteExpense, totalExpense } =
-    useGlobalContext();
-
+  const {
+    expenses,
+    getExpense,
+    deleteExpense,
+    totalExpense,
+    transactionExpens,
+  } = useGlobalContext();
+  const history = transactionExpens();
   useEffect(() => {
     getExpense();
   }, []);
@@ -23,17 +29,17 @@ function Expense() {
           <Col md={12}>
             {' '}
             <h2 className="total-income">
-              Total Expense: <span>{totalExpense()}฿</span>
+              Total Expense: <span>{numFormat(totalExpense())}฿</span>
             </h2>
           </Col>
         </Row>
         <Row>
-          <Col xs={12} md={4}>
-            <ExpenseForm />{' '}
+          <Col xs={12} md={4} style={{ marginBottom: '1rem' }}>
+            <ExpenseForm />
           </Col>
           <Col xs={12} md={8}>
             <div className="incomes">
-              {expenses.map((income) => {
+              {history.map((income) => {
                 const {
                   _id,
                   title,
@@ -73,21 +79,20 @@ const ExpenseStyled = styled.div`
   display: flex;
   overflow: auto;
   .total-income {
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #fcf6f9;
-    border: 2px solid #ffffff;
-    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
-    border-radius: 20px;
-    padding: 1rem;
+    background: #126fec;
+    box-shadow: 0px 2px 5px grey;
+    border-radius: 10px;
+    padding: 2rem;
     margin: 1rem 0;
     font-size: 2rem;
     gap: 0.5rem;
     span {
       font-size: 2.5rem;
       font-weight: 800;
-      color: var(--color-green);
     }
   }
   .income-content {
@@ -102,7 +107,7 @@ const ExpenseStyled = styled.div`
       span {
         font-size: 1.5srem;
         font-weight: 600;
-        color: var(--color-green);
+        color: #ffffff;
       }
     }
   }

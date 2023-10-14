@@ -7,6 +7,11 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Expenses from './components/Expense/Expense';
 import Income from './components/Income/Income';
 import { useGlobalContext } from './context/GlobalContext';
+import Detail from './components/Detail/Detail';
+import Home from './components/Home/Home';
+import AddIncome from './components/Income/AddIncome';
+import Analysis from './components/Analysis/Analysis';
+import Test from './components/Analysis/Test';
 function App() {
   const [active, setActive] = useState(1);
 
@@ -16,19 +21,21 @@ function App() {
   const displayData = () => {
     switch (active) {
       case 1:
-        return <Dashboard />;
+        return <Home />;
       case 2:
-        return <Dashboard />;
+        return <Analysis />;
       case 3:
         return <Income />;
       case 4:
         return <Expenses />;
+      case 5:
+        return <AddIncome />;
       default:
-        return <Dashboard />;
+        return <Home />;
     }
   };
   return (
-    <AppStyled bg={bg} className="App">
+    <AppStyled className="App">
       <MainLayout>
         <Navigation active={active} setActive={setActive} />
         <main>{displayData()}</main>
@@ -38,11 +45,11 @@ function App() {
 }
 const AppStyled = styled.div`
   height: 100vh;
-  background-image: url(${(props) => props.bg});
+  background: #fff;
   position: flex;
   main {
     flex: 1;
-    background: rgba(252, 246, 249, 0.78);
+    background: #f7f7f8;
     border: 3px solid #ffffff;
     backdrop-filter: blur(4.5px);
     border-radius: 32px;

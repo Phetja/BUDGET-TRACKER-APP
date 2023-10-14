@@ -2,18 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import avatar from '../../img/avatar.png';
 import { menuItems } from '../../utils/menuItems';
+import { Button } from 'antd';
+import { DownloadOutlined } from '@ant-design/icons';
+import { plus2, check } from '../../utils/icons';
 
 function Navigation({ active, setActive }) {
   return (
     <NavStyled>
-      <div className="nav">
-        <div className="user-con">
-          <img src={avatar} alt="" />
-          <div className="text">
-            <h2>Phetmaja</h2>
-            <p>Your Money</p>
-          </div>
-        </div>
+      <div className="nav" role="tablist">
         <div className="nav__menu">
           <ul className="menu-items">
             {menuItems.map((item) => {
@@ -31,49 +27,41 @@ function Navigation({ active, setActive }) {
           </ul>
         </div>
       </div>
+      <Button
+        type="primary"
+        shape="circle"
+        icon={active === 5 ? check : plus2}
+        className={active === 5 ? 'btn-active btn-income' : 'btn-income'}
+        onClick={active === 5 ? () => setActive(4) : () => setActive(5)}
+      />
     </NavStyled>
   );
 }
 
 const NavStyled = styled.nav`
-  padding: 2rem 1.5rem;
-  width: 374px;
+  box-shadow: 0px 2px 5px grey;
+  width: 200px;
   height: 100%;
   background: rgba(252, 246, 249, 0.78);
   border: 3px solid #ffffff;
   backdrop-filter: blur(4.5px);
-  border-radius: 32px;
+  border-radius: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 2rem;
-  .user-con {
-    height: 100px;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      background: #fcf6f9;
-      border: 2px solid #ffffff;
-      padding: 0.2rem;
-      box-shadow: 0px 1px 17px rgba(0, 0, 0, 0.06);
-    }
-    h2 {
-      color: rgba(34, 34, 96, 1);
-    }
-    p {
-      color: rgba(34, 34, 96, 0.6);
-    }
+  .nav {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
   }
   .menu-items {
+    padding: 0;
     flex: 1;
     display: flex;
     flex-direction: column;
     li {
+      width: 100%;
       display: grid;
       grid-template-columns: 40px auto;
       align-items: center;
@@ -91,10 +79,10 @@ const NavStyled = styled.nav`
       }
     }
   }
-  .active {
-    color: rgba(34, 34, 96, 1) !important;
+  .nav .active {
+    color: #126fec !important;
     i {
-      color: rgba(34, 34, 96, 1) !important;
+      color: #126fec !important;
     }
     &::before {
       content: '';
@@ -103,61 +91,68 @@ const NavStyled = styled.nav`
       top: 0;
       width: 4px;
       height: 100%;
-      background: #222260;
+      background: #126fec;
       border-radius: 0 10px 10px 0;
     }
   }
+  .btn-income {
+    display: none;
+  }
 
   @media screen and (max-width: 750px) {
+    display: flex;
     position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
     height: 80px;
     width: 100%;
-    z-index: 1000;
+    z-index: 3;
     padding: 0;
-    background: #ffffff;
-    border: none;
-
+    background: #fff;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 0px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     .nav {
-      height: 80px;
+      padding: 0px;
     }
     .nav__menu {
-      height: 80px;
-      position: fixed;
-      bottom: 0;
-      left: 0;
       width: 100%;
-      background: #ffffff;
-      box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
-      border-radius: 1.5rem;
-      transition: 0.3s;
-      text-align: center;
-      padding-bottom: 1rem;
     }
     .user-con {
       display: none;
     }
     .menu-items {
-      display: flex;
       flex-direction: row;
-      justify-content: space-between;
+      justify-content: space-around;
       align-items: center;
       margin: 0;
-      padding: 1rem;
+      li {
+        width: 100%;
+        display: flex;
+        padding-left: 0rem;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+        i {
+          color: rgba(34, 34, 96, 0.6);
+          font-size: 2rem;
+          transition: all 0.4s ease-in-out;
+        }
+      }
     }
 
     .menu-items i {
+      padding: 0;
       display: flex;
       align-items: center;
+      justify-content: center;
     }
+
     .active {
-      color: rgba(34, 34, 96, 1) !important;
+      color: #126fec !important;
       i {
-        color: rgba(34, 34, 96, 1) !important;
+        color: #126fec !important;
       }
       &::before {
         display: none;
@@ -166,6 +161,18 @@ const NavStyled = styled.nav`
 
     ul li span {
       display: none;
+    }
+    .btn-income {
+      display: block;
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      i {
+        font-size: 30px;
+      }
     }
   }
 `;

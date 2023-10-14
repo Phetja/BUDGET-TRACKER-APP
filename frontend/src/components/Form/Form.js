@@ -7,8 +7,11 @@ import Button from '../Button/Button.js';
 import { plus } from '../../utils/icons.js';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import moment from 'moment';
 
 function Form() {
+  const maxDate = moment(new Date(), 'DD-MM-YYYY').format();
+
   const { addIncome, error } = useGlobalContext();
   const [inputState, setInputState] = useState({
     title: '',
@@ -64,7 +67,7 @@ function Form() {
         </Col>
 
         <Col xs={6} md={12}>
-          <div className="input-control">
+          <div className="datePicker">
             <DatePicker
               id="date"
               placeholderText="Enter A Date"
@@ -76,14 +79,14 @@ function Form() {
             />
           </div>
         </Col>
-        <Col xs={6} md={12}>
+        <Col xs={12} md={12}>
           <div className="selects input-control">
             <select
               required
               value={category}
               name="category"
               id="category"
-              onChange={handleInput('category')}
+              onSelect={handleInput('category')}
             >
               <option value="" disabled>
                 Select Option
@@ -146,7 +149,7 @@ const FormStyled = styled.form`
     border: 2px solid #fff;
     background: transparent;
     resize: none;
-    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+    box-shadow: 0px 2px 5px grey;
     color: rgba(34, 34, 96, 0.9);
     &::placeholder {
       color: rgba(34, 34, 96, 0.4);
@@ -154,16 +157,22 @@ const FormStyled = styled.form`
   }
   .input-control {
     margin-bottom: 1rem;
-    input,
-    textarea,
-    select,
-    DatePicker {
-      width: 100%;
-    }
   }
 
-  .input-control DatePicker {
-    margin: 0;
+  input,
+  textarea,
+  select,
+  datePicker {
+    width: 100%;
+    padding: 12px;
+  }
+
+  #date {
+    width: 100%;
+    margin: 0 0 12px;
+  }
+  .datePicker input {
+    width: 100%;
   }
 
   .selects {

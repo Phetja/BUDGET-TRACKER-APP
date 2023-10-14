@@ -1,36 +1,52 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context/GlobalContext';
+import { ArrowDownOutlined } from '@ant-design/icons';
+import { dateFormat } from '../utils/dateFormat';
+import moment from 'moment';
+import { numFormat } from '../utils/numFormat';
 
 function History() {
-  const { transactionHistory } = useGlobalContext();
+  const { transactionAllHistory } = useGlobalContext();
 
-  const [...history] = transactionHistory();
-
+  const [...history] = transactionAllHistory();
+  const maxDate = moment(new Date(), 'DD-MM-YYYY').format();
   return (
     <HistoryStyled>
-      <h2>Recent History</h2>
+      <h2>Transaction History</h2>
       {history.map((item) => {
-        const { _id, title, amount, type } = item;
+        const { _id, title, amount, type, date } = item;
+
         return (
           <div key={_id} className="history-item">
-            <p
-              style={{
-                color: type === 'expense' ? 'red' : 'var(--color-green)',
-              }}
-            >
-              {title}
-            </p>
+            <div>
+              <p
+                style={{
+                  color: '#000',
+                }}
+              >
+                {title}
+              </p>
+              <div>
+                <div className="icon">
+                  {dateFormat(date) === dateFormat(maxDate)
+                    ? 'today'
+                    : dateFormat(date)}
+                </div>
+              </div>
+            </div>
 
-            <p
-              style={{
-                color: type === 'expense' ? 'red' : 'var(--color-green)',
-              }}
-            >
-              {type === 'expense'
-                ? `-${amount <= 0 ? 0 : amount}`
-                : `+${amount <= 0 ? 0 : amount}`}
-            </p>
+            <div>
+              <p
+                style={{
+                  color: type === 'expense' ? 'red' : 'var(--color-green)',
+                }}
+              >
+                {type === 'expense'
+                  ? `-${amount <= 0 ? 0 : numFormat(amount)}`
+                  : `+${amount <= 0 ? 0 : numFormat(amount)}`}
+              </p>
+            </div>
           </div>
         );
       })}
@@ -43,15 +59,18 @@ const HistoryStyled = styled.div`
   flex-direction: column;
   gap: 1rem;
   .history-item {
-    background: #fcf6f9;
-    border: 2px solid #ffffff;
-    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+    background: #fff;
+    box-shadow: 0px 0px 3px grey;
+    border-radius: 10px;
     padding: 1rem;
-    border-radius: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    p {
+      margin: 0;
+    }
   }
+
   @media screen and (max-width: 750px) {
     padding-top: 1rem;
   }

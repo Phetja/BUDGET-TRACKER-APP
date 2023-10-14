@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { dateFormat } from '../../utils/dateFormat';
+import { dateFormat } from '../utils/dateFormat';
 import { HeartFilled, DeleteOutlined } from '@ant-design/icons';
 
 import {
@@ -29,16 +29,17 @@ import {
   tv,
   users,
   yt,
-} from '../../utils/icons';
+} from '../utils/icons';
 import { Button } from 'antd';
-import { numFormat } from '../../utils/numFormat';
+import { numFormat } from '../utils/numFormat';
 
-function IncomeItem({
+function HistoryItem({
   id,
   title,
   amount,
   date,
   category,
+  description,
   deleteItem,
   indicatorColor,
   type,
@@ -94,32 +95,30 @@ function IncomeItem({
   };
 
   console.log('type', type);
-  const handleClick = (e) => {
-    e.preventDefault();
-    console.log('The link was clicked.');
-  };
+
   return (
-    <IncomeItemStyled indicator={indicatorColor} onClick={() => handleClick}>
+    <IncomeItemStyled indicator={indicatorColor}>
       <div className="icon">
         {type === 'expense' ? expenseCatIcon() : categoryIcon()}
       </div>
       <div className="content">
         <div className="inner-content">
           <div>
-            {/* <h5>{title}</h5> */}
-            <h5>{category}</h5>
-            <p>{dateFormat(date)}</p>
+            <h5>{title}</h5>
+            <p>
+              {calender} {dateFormat(date)}
+            </p>
           </div>
           <div className="delete-item">
-            <p>
-              {baht} {numFormat(amount)}
+            <p
+              style={{
+                color: type === 'expense' ? 'red' : 'var(--color-green)',
+              }}
+            >
+              {type === 'expense'
+                ? `-${amount <= 0 ? 0 : numFormat(amount)}`
+                : `+${amount <= 0 ? 0 : numFormat(amount)}`}
             </p>
-            <Button
-              type="primary"
-              danger
-              icon={<DeleteOutlined />}
-              onClick={() => deleteItem(id)}
-            />
           </div>
         </div>
       </div>
@@ -138,9 +137,6 @@ const IncomeItemStyled = styled.div`
   gap: 1rem;
   width: 100%;
   color: #000000;
-  p {
-    margin: 0;
-  }
   .icon {
     width: 40px;
     height: 40px;
@@ -182,4 +178,4 @@ const IncomeItemStyled = styled.div`
   }
 `;
 
-export default IncomeItem;
+export default HistoryItem;

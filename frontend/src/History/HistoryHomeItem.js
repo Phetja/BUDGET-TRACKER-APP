@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { dateFormat } from '../../utils/dateFormat';
+import { dateFormat } from '../utils/dateFormat';
 import { HeartFilled, DeleteOutlined } from '@ant-design/icons';
 
 import {
   baht,
+  bank,
   bitcoin,
   book,
   calender,
@@ -29,16 +30,17 @@ import {
   tv,
   users,
   yt,
-} from '../../utils/icons';
+} from '../utils/icons';
 import { Button } from 'antd';
-import { numFormat } from '../../utils/numFormat';
+import { numFormat } from '../utils/numFormat';
 
-function IncomeItem({
+function HistoryHomeItem({
   id,
   title,
   amount,
   date,
   category,
+  description,
   deleteItem,
   indicatorColor,
   type,
@@ -47,16 +49,8 @@ function IncomeItem({
     switch (category) {
       case 'salary':
         return money;
-      case 'freelancing':
-        return freelance;
-      case 'investments':
-        return stocks;
-      case 'stocks':
-        return users;
-      case 'bitcoin':
-        return bitcoin;
       case 'bank':
-        return card;
+        return bank;
       case 'youtube':
         return yt;
       case 'other':
@@ -93,33 +87,66 @@ function IncomeItem({
     }
   };
 
-  console.log('type', type);
-  const handleClick = (e) => {
-    e.preventDefault();
-    console.log('The link was clicked.');
+  const incomeIconColor = () => {
+    switch (category) {
+      case 'salary':
+        return '87,170,115';
+      case 'bank':
+        return '0,47,110';
+      default:
+        return '';
+    }
   };
+
+  const expenseIconColor = () => {
+    switch (category) {
+      case 'food':
+        return '203,146,4';
+      case 'coffee':
+        return '111,78,55';
+      case 'travelling':
+        return '216,37,0';
+      default:
+        return '';
+    }
+  };
+
+  console.log('type', type);
+
   return (
-    <IncomeItemStyled indicator={indicatorColor} onClick={() => handleClick}>
-      <div className="icon">
+    <IncomeItemStyled indicator={indicatorColor}>
+      <div
+        className="icon"
+        style={{
+          background: `rgba(${
+            type === 'expense' ? expenseIconColor() : incomeIconColor()
+          }, 0.2)`,
+          color: `rgba(${
+            type === 'expense' ? expenseIconColor() : incomeIconColor()
+          }, 1.0)`,
+        }}
+      >
         {type === 'expense' ? expenseCatIcon() : categoryIcon()}
       </div>
       <div className="content">
         <div className="inner-content">
           <div>
-            {/* <h5>{title}</h5> */}
-            <h5>{category}</h5>
-            <p>{dateFormat(date)}</p>
+            <h5>{title}</h5>
+            <p>
+              {category}
+              {/* {calender} {dateFormat(date)} */}
+            </p>
           </div>
           <div className="delete-item">
-            <p>
-              {baht} {numFormat(amount)}
+            <p
+              style={{
+                color: type === 'expense' ? 'red' : 'var(--color-green)',
+              }}
+            >
+              {type === 'expense'
+                ? `-${amount <= 0 ? 0 : numFormat(amount)}`
+                : `+${amount <= 0 ? 0 : numFormat(amount)}`}
             </p>
-            <Button
-              type="primary"
-              danger
-              icon={<DeleteOutlined />}
-              onClick={() => deleteItem(id)}
-            />
           </div>
         </div>
       </div>
@@ -129,24 +156,23 @@ function IncomeItem({
 
 const IncomeItemStyled = styled.div`
   background: #fafafa;
-  box-shadow: 0px 0px 3px grey;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  padding: 1rem;
+  padding: 0.5rem;
   margin-bottom: 1rem;
   display: flex;
   align-items: center;
   gap: 1rem;
   width: 100%;
   color: #000000;
-  p {
-    margin: 0;
-  }
   .icon {
-    width: 40px;
-    height: 40px;
+    width: 60px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     i {
       font-size: 1.6rem;
     }
@@ -163,6 +189,9 @@ const IncomeItemStyled = styled.div`
       display: flex;
       justify-content: space-between;
       align-items: center;
+      p{
+        margin:0;
+      }
     }
 
     .delete-item{
@@ -178,8 +207,8 @@ const IncomeItemStyled = styled.div`
   }
 
   @media screen and (max-width: 750px) {
-
+    padding: 0.5rem;
   }
 `;
 
-export default IncomeItem;
+export default HistoryHomeItem;

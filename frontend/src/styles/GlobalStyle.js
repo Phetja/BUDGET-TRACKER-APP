@@ -9,9 +9,9 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     :root{
-        --primary-color: #222260;
-        --primary-color2: 'color: rgba(34, 34, 96, .6)';
-        --primary-color3: 'color: rgba(34, 34, 96, .4)';
+        --primary-color: #126fec;
+        --primary-color2: 'color: rgba(18, 111, 236, .6)';
+        --primary-color3: 'color: rgba(18, 111, 236, .4)';
         --color-green: #42AD00;
         --color-grey: #aaa;
         --color-accent: #F56692;
@@ -26,7 +26,7 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     h1, h2, h3, h4, h5, h6{
-        color: var(--primary-color);
+        color: #222260;
     }
 
     .error{

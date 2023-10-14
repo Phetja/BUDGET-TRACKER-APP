@@ -10,10 +10,8 @@ import { numFormat } from '../../utils/numFormat';
 import IncomeForm from '../Form/IncomeForm';
 import moment from 'moment';
 
-function Income() {
-  const { incomes, getIncomes, deleteIncome, totalIncome, transactionIncome } =
-    useGlobalContext();
-  const [...history] = transactionIncome();
+function AddIncome() {
+  const { incomes, getIncomes, deleteIncome, totalIncome } = useGlobalContext();
   const maxDate = moment(new Date()).format('DD/MM/YYYY');
   useEffect(() => {
     getIncomes();
@@ -34,26 +32,7 @@ function Income() {
           <Col xs={12} md={4} style={{ marginBottom: '1rem' }}>
             <IncomeForm />
           </Col>
-          <Col xs={12} md={8}>
-            <div className="incomes">
-              {history.map((income) => {
-                const { _id, title, amount, date, category, type } = income;
-                return (
-                  <IncomeItem
-                    key={_id}
-                    id={_id}
-                    title={title}
-                    amount={amount}
-                    date={date}
-                    type={type}
-                    category={category}
-                    indicatorColor="var(--color-green)"
-                    deleteItem={deleteIncome}
-                  />
-                );
-              })}
-            </div>
-          </Col>
+          <Col xs={12} md={8}></Col>
         </Row>
       </InnerLayout>
     </IncomeStyled>
@@ -73,8 +52,8 @@ const IncomeStyled = styled.div`
     align-items: center;
     background: #126fec;
     box-shadow: 0px 2px 5px grey;
-    border-radius: 10px;
-    padding: 2rem;
+    border-radius: 20px;
+    padding: 1rem;
     margin: 1rem 0;
     font-size: 2rem;
     gap: 0.5rem;
@@ -101,4 +80,4 @@ const IncomeStyled = styled.div`
   }
 `;
 
-export default Income;
+export default AddIncome;

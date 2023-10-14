@@ -31,61 +31,43 @@ function Dashboard() {
     <DashboardStyle>
       <InnerLayout>
         <Container>
-          {/* <h1 style={{ marginButton: '16px' }}>Today</h1> */}
-
-          <div>
-            <Row gutter={16}>
-              <Col span={12}>
-                <Card bordered={false} bodyStyle={{ background: '#126fec' }}>
-                  <Statistic
-                    title="รวม"
-                    value={totalBalance()}
-                    valueStyle={{
-                      color: '#fff',
-                      background: '#126fec',
-                    }}
-                    prefix={<ArrowUpOutlined />}
-                    suffix={baht}
-                  />
-                </Card>
-              </Col>
-              <Col span={12}>
-                <Card bordered={false} bodyStyle={{ background: '#126fec' }}>
-                  <Statistic
-                    title="รายรับ"
-                    value={totalIncome()}
-                    valueStyle={{
-                      color: '#3f8600',
-                    }}
-                    prefix={<ArrowUpOutlined />}
-                    suffix={baht}
-                  />
-                </Card>
-              </Col>
-              <Col span={12}>
-                <Card bordered={false} bodyStyle={{ background: '#126fec' }}>
-                  <Statistic
-                    title="รายจ่าย"
-                    value={totalExpense()}
-                    valueStyle={{
-                      color: '#cf1322',
-                    }}
-                    prefix={<ArrowDownOutlined />}
-                    suffix={baht}
-                  />
-                </Card>
-              </Col>
-            </Row>
-          </div>
-
+          <h1>Today</h1>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Card bordered={false}>
+                <Statistic
+                  title="รายรับ"
+                  value={totalIncome()}
+                  valueStyle={{
+                    color: '#3f8600',
+                  }}
+                  prefix={<ArrowUpOutlined />}
+                  suffix={baht}
+                />
+              </Card>
+            </Col>
+            <Col span={12}>
+              <Card bordered={false}>
+                <Statistic
+                  title="รายจ่าย"
+                  value={totalExpense()}
+                  precision={2}
+                  valueStyle={{
+                    color: '#cf1322',
+                  }}
+                  prefix={<ArrowDownOutlined />}
+                  suffix="%"
+                />
+              </Card>
+            </Col>
+          </Row>
           <Row>
             <Col xs={12} md={8}>
               <div className="chart-con">
                 <Chart />
               </div>
-
               <Row>
-                {/* <Col xs={12} md={6}>
+                <Col xs={12} md={6}>
                   <div className="income">
                     <h3>{accounts} Income</h3>
                     <p>
@@ -100,8 +82,15 @@ function Dashboard() {
                       {baht} {totalExpense()}
                     </p>
                   </div>
-                </Col> */}
+                </Col>
               </Row>
+
+              <div className="balance">
+                <h3>{coin} Balance</h3>
+                <p>
+                  {baht} {totalBalance()}
+                </p>
+              </div>
             </Col>
             <Col xs={12} md={4}>
               <div>
@@ -131,7 +120,7 @@ function Dashboard() {
                 })}
               </div>
 
-              {/* <History /> */}
+              <History />
               <h4 className="salary-title">
                 Min <span>Salary</span>Max
               </h4>

@@ -10,11 +10,12 @@ import {
   Legend,
   ArcElement,
 } from 'chart.js';
-
-import { Doughnut, Pie } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import styled from 'styled-components';
 import { useGlobalContext } from '../../context/GlobalContext';
 import { dateFormat } from '../../utils/dateFormat';
+import { months } from '../../utils/months';
+import moment from 'moment-timezone';
 
 ChartJs.register(
   CategoryScale,
@@ -27,37 +28,33 @@ ChartJs.register(
   ArcElement
 );
 
-function Chart() {
-  const { expenseAnlaysis } = useGlobalContext();
+function Graph() {
+  const maxDate = moment(new Date(), 'DD-MM-YYYY').format('MMM DD');
+
+  const { incomes, expenses } = useGlobalContext();
+  const labels = months({ count: 12 });
   const data = {
-    labels: expenseAnlaysis.map((inc) => {
-      const { _id } = inc;
-      return _id;
-    }),
+    labels: labels,
     datasets: [
       {
-        label: '',
+        label: `${maxDate}`,
         data: [
-          ...expenseAnlaysis.map((income) => {
-            const { sum } = income;
-            return sum;
+          ...incomes.map((income) => {
+            const { amount } = income;
+            return amount;
           }),
         ],
-        backgroundColor: [
-          'rgb(229, 118, 92)',
-          'rgb(224, 184, 81)',
-          'rgb(224,92,139)',
-          'rgb(87,217,115)',
-          'rgb(90,157,224)',
-        ],
-        hoverOffset: 4,
+        fill: false,
+        backgroundColor: ['rgb(54, 162, 235)'],
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1,
       },
     ],
   };
 
   return (
     <ChartStyled>
-      <Doughnut data={data} />
+      <Line data={data} />
     </ChartStyled>
   );
 }
@@ -67,8 +64,8 @@ const ChartStyled = styled.div`
   border: 2px solid #ffffff;
   box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
   padding: 1rem;
+  margin-bottom: 1rem;
   border-radius: 20px;
-  height: 100%;
 `;
 
-export default Chart;
+export default Graph;
