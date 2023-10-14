@@ -4,9 +4,11 @@ const app = express();
 const { db } = require('./db/db');
 const { readdirSync } = require('fs');
 require('dotenv').config();
-
+const corsOptions = {
+  origin: 'https://phetmaja.onrender.com', // frontend URI (ReactJS)
+};
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 const PORT = process.env.PORT;
 
