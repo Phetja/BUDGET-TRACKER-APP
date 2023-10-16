@@ -34,11 +34,6 @@ function App() {
         return <Home />;
     }
   };
-  useEffect(() => {
-    fetch('https://phemaja-expense.onrender.com')
-      .then((res) => res.json())
-      .then((data) => setMessage(data.message));
-  }, []);
   return (
     <AppStyled className="App">
       <MainLayout>
