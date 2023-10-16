@@ -2,17 +2,13 @@ import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
 import { InnerLayout } from '../../styles/Layouts';
 import { useGlobalContext } from '../../context/GlobalContext';
-import Form from '../Form/Form';
-import IncomeItem from '../IncomeItem/IncomeItem';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { numFormat } from '../../utils/numFormat';
 import IncomeForm from '../Form/IncomeForm';
-import moment from 'moment';
 
 function AddIncome() {
-  const { incomes, getIncomes, deleteIncome, totalIncome } = useGlobalContext();
-  const maxDate = moment(new Date()).format('DD/MM/YYYY');
+  const { getIncomes, totalIncome } = useGlobalContext();
   useEffect(() => {
     getIncomes();
   }, []);

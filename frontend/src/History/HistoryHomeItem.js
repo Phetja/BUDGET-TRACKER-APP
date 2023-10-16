@@ -1,47 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
-import { dateFormat } from '../utils/dateFormat';
-import { HeartFilled, DeleteOutlined } from '@ant-design/icons';
 
 import {
-  baht,
   bank,
-  bitcoin,
-  book,
-  calender,
   car,
-  card,
   circle,
-  clothing,
   coffee,
-  comment,
-  dollar,
   food,
-  freelance,
   medical,
   mobile,
   money,
   piggy,
   shopping,
-  stocks,
   store,
   takeaway,
-  trash,
   tv,
-  users,
   yt,
 } from '../utils/icons';
-import { Button } from 'antd';
 import { numFormat } from '../utils/numFormat';
 
 function HistoryHomeItem({
   id,
   title,
   amount,
-  date,
   category,
-  description,
-  deleteItem,
   indicatorColor,
   type,
 }) {

@@ -1,8 +1,7 @@
 import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
 import { InnerLayout } from '../../styles/Layouts';
-import Chart from '../Chart/Chart';
-import { accounts, baht, coin, dollar, money } from '../../utils/icons';
+import { baht } from '../../utils/icons';
 import { useGlobalContext } from '../../context/GlobalContext';
 import History from '../../History/History';
 import Container from 'react-bootstrap/Container';
@@ -11,7 +10,6 @@ import Col from 'react-bootstrap/Col';
 import { Button } from 'antd';
 import { ArrowDownOutlined, ArrowUpOutlined } from '@ant-design/icons';
 import { numFormat } from '../../utils/numFormat';
-import Graph from '../Chart/Graph';
 function Detail() {
   const {
     totalExpense,

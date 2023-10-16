@@ -4,7 +4,6 @@ import SelectDate from './SelectDate';
 import Chart from '../Chart/Chart';
 import { Col, Row, Space } from 'antd';
 import { useGlobalContext } from '../../context/GlobalContext';
-import HistoryHomeItem from '../../History/HistoryHomeItem';
 import ItemCategory from '../ItemCategory/ItemCategory';
 function Analysis() {
   const { expenseAnlaysis, totalExpenseAnalysis } = useGlobalContext();

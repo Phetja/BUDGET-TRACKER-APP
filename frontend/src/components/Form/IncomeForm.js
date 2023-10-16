@@ -13,7 +13,7 @@ function IncomeForm() {
   });
 
   const now = dayjs().format('YYYY-MM-DD');
-  const { title, amount, date, category } = inputState;
+  const { title, amount, category } = inputState;
 
   const handleInput = (name) => (e) => {
     setInputState({ ...inputState, [name]: e.target.value });

@@ -1,17 +1,12 @@
 import React, { useEffect } from 'react';
 import { InnerLayout } from '../../styles/Layouts';
 import { useGlobalContext } from '../../context/GlobalContext';
-import IncomeItem from '../IncomeItem/IncomeItem';
 import moment from 'moment';
-import HistoryItem from '../../History/HistoryItem';
 import styled from 'styled-components';
 import HistoryHomeItem from '../../History/HistoryHomeItem';
-import { Button, Col, Row } from 'antd';
-import { baht } from '../../utils/icons';
+import { Col, Row } from 'antd';
 import { numFormat } from '../../utils/numFormat';
 function Home() {
-  const maxDate = moment(new Date(), 'DD-MM-YYYY').format('YYYY-MM-DD');
-
   const {
     getIncomes,
     getExpense,

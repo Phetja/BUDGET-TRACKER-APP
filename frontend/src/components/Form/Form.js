@@ -7,11 +7,8 @@ import Button from '../Button/Button.js';
 import { plus } from '../../utils/icons.js';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import moment from 'moment';
 
 function Form() {
-  const maxDate = moment(new Date(), 'DD-MM-YYYY').format();
-
   const { addIncome, error } = useGlobalContext();
   const [inputState, setInputState] = useState({
     title: '',

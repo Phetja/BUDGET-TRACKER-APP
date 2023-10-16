@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { styled } from 'styled-components';
 import { InnerLayout } from '../../styles/Layouts';
 import { useGlobalContext } from '../../context/GlobalContext';
-import Form from '../Form/Form';
 import IncomeItem from '../IncomeItem/IncomeItem';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -10,13 +9,8 @@ import ExpenseForm from '../Form/ExpenseForm';
 import { numFormat } from '../../utils/numFormat';
 
 function Expense() {
-  const {
-    expenses,
-    getExpense,
-    deleteExpense,
-    totalExpense,
-    transactionExpens,
-  } = useGlobalContext();
+  const { getExpense, deleteExpense, totalExpense, transactionExpens } =
+    useGlobalContext();
   const history = transactionExpens();
   useEffect(() => {
     getExpense();

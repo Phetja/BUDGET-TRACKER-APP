@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useGlobalContext } from '../context/GlobalContext';
-import { ArrowDownOutlined } from '@ant-design/icons';
 import { dateFormat } from '../utils/dateFormat';
 import moment from 'moment';
 import { numFormat } from '../utils/numFormat';

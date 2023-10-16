@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { DatePicker, Row, Select, Space, TimePicker } from 'antd';
+import { DatePicker, Row, Select, Space } from 'antd';
 import dayjs from 'dayjs';
 import { useGlobalContext } from '../../context/GlobalContext';
-import Chart from '../Chart/Chart';
 const now = dayjs().format('YYYY-MM-DD');
 
 const dateFormatList = ['YYYY-MM-DD', 'YYYY-MM', 'YYYY'];

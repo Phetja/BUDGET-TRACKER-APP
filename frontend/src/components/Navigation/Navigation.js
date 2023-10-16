@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import avatar from '../../img/avatar.png';
 import { menuItems } from '../../utils/menuItems';
 import { Button } from 'antd';
-import { DownloadOutlined } from '@ant-design/icons';
 import { plus2, check } from '../../utils/icons';
 
 function Navigation({ active, setActive }) {

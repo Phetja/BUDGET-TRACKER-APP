@@ -1,20 +1,15 @@
 import styled from 'styled-components';
-import bg from './img/bg.png';
 import { MainLayout } from './styles/Layouts';
 import Navigation from './components/Navigation/Navigation';
-import { useEffect, useState } from 'react';
-import Dashboard from './components/Dashboard/Dashboard';
+import { useState } from 'react';
 import Expenses from './components/Expense/Expense';
 import Income from './components/Income/Income';
 import { useGlobalContext } from './context/GlobalContext';
-import Detail from './components/Detail/Detail';
 import Home from './components/Home/Home';
 import AddIncome from './components/Income/AddIncome';
 import Analysis from './components/Analysis/Analysis';
-import Test from './components/Analysis/Test';
 function App() {
   const [active, setActive] = useState(1);
-  const [message, setMessage] = useState('');
   const global = useGlobalContext();
   console.log(global);
 

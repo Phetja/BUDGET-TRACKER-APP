@@ -9,7 +9,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
 function ExpenseForm() {
-  const { addExpense, getIncomes, error, setError } = useGlobalContext();
+  const { addExpense, error } = useGlobalContext();
   const [inputState, setInputState] = useState({
     title: '',
     amount: '',
